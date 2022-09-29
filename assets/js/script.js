@@ -14,6 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+    document.getElementById('answer-box').addEventListener('keydown' , function(event){
+        //keydown hört ob ein key gedrückt wurde
+        if (event.key === 'Enter'){
+            checkAnswer();
+        }
+    })
+
     runGame('addition');
 });
 
@@ -23,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
  * Mein Loop of the game > Called when the game loads and when the users answer is proceed
  */
 function runGame(gameType) {
+    document.getElementById('answer-box').value='';
+    document.getElementById('answer-box').focus();
+    //das erste lehrt die answerbox nach dem raten, das zweite bringt den curser immer automatisch in die box!
+
     // creates two random numbers between 1-25 
     let num1 = Math.floor(Math.random()*25)+1;
     let num2 = Math.floor(Math.random()*25)+1;

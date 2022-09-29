@@ -47,9 +47,11 @@ function checkAnswer() {
     let isCorrect = userAnswer ===calculatedAnswer[0];
     //returns true or false
     if (isCorrect) {
-        alert('Hey! You got it right! :)')
+        alert('Hey! You got it right! :)');
+        incrementScore();
     } else {
         alert(`Àwww... You answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -76,14 +78,26 @@ function calculateCorrectAnswer() {
    }
 }
 
+/**
+ * get the current score from the DOM and increments it by 1
+ * innertext ist <..>innerText</..> innerContend ist meistens das gleiche
+ * ++ before makes a difference. But the result is the same but nicer.
+ */
 function incrementScore() {
-
+    let oldScore = parseInt(document.getElementById('score').innerText);
+    //jetzt score upgeated
+    document.getElementById('score').innerText = ++oldScore
 }
 
+/**
+ * get the current score incorect answers from the DOM and increments it by 1
+ */
 function incrementWrongAnswer() {
-
+    let oldScore = parseInt(document.getElementById('incorrect').innerText);
+    document.getElementById('incorrect').innerText = ++oldScore
 }
 
+//text: 'operand1' wird ans html zurückgegeben
 function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;

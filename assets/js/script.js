@@ -94,7 +94,13 @@ function calculateCorrectAnswer() {
     } else if(operator === '-') {
         return[operand1 - operand2, 'subtract'];
     } else if(operator === '/') {
-        return[operand1 / operand2, 'division'];
+        let res = Math.floor(operand1 / operand2)
+        if ((operand1 % operand2 * 10) >5){
+            res + 1
+            return[res, 'division'];
+        } else {
+        return[res, 'division'];
+        }
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;

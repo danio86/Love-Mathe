@@ -16,7 +16,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+
+/**
+ * Dot string beschreibt function - Dadurch wird die Funktion beschrieben wenn sie woanders gecalled wird:
+ * Mein Loop of the game > Called when the game loads and when the users answer is proceed
+ */
 function runGame() {
+    // creates two random numbers between 1-25 
+    let num1 = Math.floor(Math.random()*25)+1;
+    let num2 = Math.floor(Math.random()*25)+1;
 
 }
 

@@ -94,12 +94,11 @@ function calculateCorrectAnswer() {
     } else if(operator === '-') {
         return[operand1 - operand2, 'subtract'];
     } else if(operator === '/') {
-        let res = Math.floor(operand1 / operand2)
-        if ((operand1 % operand2 * 10) >5){
-            res + 1
+        if ((operand1 % operand2 * 10) >= 5){
+            let res = Math.floor(operand1/operand2) + 1
             return[res, 'division'];
         } else {
-        return[res, 'division'];
+        return[Math.floor(operand1/operand2), 'division'];
         }
     } else {
         alert(`Unimplemented operator ${operator}`);

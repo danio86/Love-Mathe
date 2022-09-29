@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -36,12 +36,44 @@ function runGame(gameType) {
         }
     }
 
+    /**
+     * checks if calculated answer (in array) matches the useres guess.
+     * we retriev answer from the dom (html)
+     */
 function checkAnswer() {
+    let userAnswer= parseInt(document.getElementById('answer-box').value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    //returns an array
+    let isCorrect = userAnswer ===calculatedAnswer[0];
+    //returns true or false
+    if (isCorrect) {
+        alert('Hey! You got it right! :)')
+    } else {
+        alert(`Àwww... You answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
 
+    runGame(calculatedAnswer[1]);
 }
 
+/**
+ * parseInt macht das Gegenteil von vorher. (die daten wurden html geholt und definiert (als text))
+ * jetzt werden die Variabeln wieder aus html zurückgeholt und richtig definiert. 
+ * Die Nummern die vor her random erstellt wurden und der Operator werden jetzt in in den Variabeln gespeichert 
+ * und in eine Liste[] gesteckt.
+ * Gets numbers and operator directly from DOM! (Das ist in html!! We want to avoid global variabes!)
+ * das ergebniss is in a list!
+ */
 function calculateCorrectAnswer() {
+   let operand1 = parseInt(document.getElementById('operand1').innerText);
+   let operand2 = parseInt(document.getElementById('operand2').innerText);
+   let operator = document.getElementById('operator').innerText;
 
+   if (operator === '+') {
+        return[operand1+operand2, 'addiotion'];
+   } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
+   }
 }
 
 function incrementScore() {

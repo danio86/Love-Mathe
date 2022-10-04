@@ -94,7 +94,7 @@ function calculateCorrectAnswer() {
     } else if(operator === '-') {
         return[operand1 - operand2, 'subtract'];
     } else if(operator === '/') {
-        if ((operand1 % operand2 * 10) >= 5){
+        if (((operand1 % operand2 * 10)/operand2) >= 5){
             let res = Math.floor(operand1/operand2) + 1
             return[res, 'division'];
         } else {
